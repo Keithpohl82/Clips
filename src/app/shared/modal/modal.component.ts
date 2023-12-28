@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
+import { CommonModule } from '@angular/common';
+import { NavComponent } from '../../nav/nav.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, NavComponent],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  styleUrl: './modal.component.css',
+  
 })
 export class ModalComponent {
+
+  constructor(public modal: ModalService) {
+
+  }
 
 }
