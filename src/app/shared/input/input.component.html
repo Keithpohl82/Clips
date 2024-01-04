@@ -1,8 +1,9 @@
-<input [formControl]="control" type="text"
+<input [formControl]="control" [type]="type"
        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-       placeholder="Enter Name" />
+              duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+       [placeholder]="placeholder" />
 <ng-container *ngIf="control.touched && control.dirty">
+    <!-- Name Validator -->
     <p *ngIf="control.errors?.['required']" class="text-red-400">
         Required Field
     </p>
@@ -10,5 +11,15 @@
         Value is {{ control.errors?.['minlength'].actualLength }}
         Must be {{control.errors?.['minlength'].requiredLength}} characters.
     </p>
+    <!-- Email Validator -->
+    <p *ngIf="control.errors?.['email']" class="text-red-400">
+        Valid Email address required.
+    </p>
+    <!-- Age Validators -->
+    <p *ngIf="control.errors?.['min']" class="text-red-400">
+        Must be at least 18 or older
+    </p>
+    <p *ngIf="control.errors?.['max']" class="text-red-400">
+        Worlds oldest living human
+    </p>
 </ng-container>
-
