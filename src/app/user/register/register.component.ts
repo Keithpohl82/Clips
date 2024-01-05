@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../shared/input/input.component';
+import { AlertComponent } from '../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, InputComponent],
+  imports: [CommonModule, InputComponent, ReactiveFormsModule, AlertComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -19,6 +20,10 @@ export class RegisterComponent {
   confirm_password = new FormControl('', [Validators.required])
   phoneNumber = new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)])
 
+  showAlert = false
+  alertMsg = 'Please wait! Your account is being created'
+  alertColor = 'blue'
+
   registerForm = new FormGroup({
 
     name: this.name,
@@ -29,5 +34,11 @@ export class RegisterComponent {
     phoneNumber: this.phoneNumber
 
   })
+
+  register() {
+    this.showAlert = true
+    this.alertMsg = 'Please wait! Your account is being created'
+    this.alertColor = 'blue'
+  }
 
 }

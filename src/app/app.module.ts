@@ -5,6 +5,7 @@ import { platform } from 'os';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { UserModule } from './user/user.module';
+import { NavComponent } from './nav/nav.component';
 
 
 
@@ -15,7 +16,8 @@ import { UserModule } from './user/user.module';
     AppComponent,
     BrowserModule,
     UserModule,
-    routes
+    routes,
+    NavComponent
   ],
   providers: []
 })
