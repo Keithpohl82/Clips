@@ -46,9 +46,9 @@ export class RegisterComponent {
 
     const { email, password } = this.registerForm.value
 
-    const userCred = await this.auth.createUserWithEmailAndPassword(
-      email as string, password as string
-    )
+    //const userCred = await this.auth.createUserWithEmailAndPassword(
+    //  email as string, password as string
+    //)
   }
 
 }
