@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../shared/input/input.component';
 import { AlertComponent } from '../../shared/alert/alert.component';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,8 @@ import { AlertComponent } from '../../shared/alert/alert.component';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  constructor(private auth: AngularFireAuth) { }
 
   name = new FormControl('', [Validators.required, Validators.minLength(3)])
   email = new FormControl('', [Validators.required, Validators.email])
@@ -35,10 +38,16 @@ export class RegisterComponent {
 
   })
 
-  register() {
+  async register() {
     this.showAlert = true
     this.alertMsg = 'Please wait! Your account is being created'
     this.alertColor = 'blue'
+
+    const { email, password } = this.registerForm.value
+
+    const userCred = await this.auth.createUserWithEmailAndPassword(
+      email as string, password as string
+    )
   }
 
 }
