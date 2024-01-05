@@ -13,8 +13,9 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/aut
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  //constructor is causing injector error.
+  //constructor(public auth: AngularFireAuth) { }
 
-  constructor(private auth: AngularFireAuth) { }
 
   name = new FormControl('', [Validators.required, Validators.minLength(3)])
   email = new FormControl('', [Validators.required, Validators.email])
